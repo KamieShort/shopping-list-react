@@ -1,18 +1,24 @@
 import { useReducer, useState } from 'react';
 import React from 'react';
 
+import Edit from '../components/Edit';
+
 const initialState = [{ id: 0, text: 'eggs', done: false }];
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM': {
-      const newState = [
+      const addItem = [
         { id: state.length, text: action.payload.text, done: false },
         ...state,
       ];
-      console.log(newState);
-      return newState;
+
+      return addItem;
     }
+
+    case 'DELETE_ITEM':
+      return state.filter((item) => item.id !== action.payload.id);
+
     default:
       throw new Error('not supported');
   }
@@ -26,6 +32,10 @@ export default function ShoppingList() {
     e.preventDefault();
     dispatch({ type: 'ADD_ITEM', payload: { text: newItem } });
     setNewItem('');
+  };
+
+  const handleDelete = (id) => {
+    dispatch({ type: 'DELETE_ITEM', payload: { id: id } });
   };
 
   return (
@@ -46,6 +56,8 @@ export default function ShoppingList() {
         {items.map((item) => (
           <li key={item.id}>
             <p>{item.text}</p>
+            <Edit />
+            <button onClick={() => handleDelete(item.id)}>Delete</button>
           </li>
         ))}
       </ul>

@@ -1,5 +1,6 @@
 import { useReducer, useState } from 'react';
 import React from 'react';
+import Item from '../components/Item';
 
 const initialState = [{ id: 0, text: 'eggs', done: false }];
 
@@ -51,7 +52,7 @@ export default function ShoppingList() {
 
   return (
     <div>
-      <h1>Shopping List</h1>
+      {/* <h1>Shopping List</h1> */}
       <form onSubmit={handleAddItem}>
         <input
           type="text"
@@ -66,16 +67,7 @@ export default function ShoppingList() {
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            <p>{item.text}</p>
-
-            <input
-              type="text"
-              value={item}
-              onChange={(e) => handleEdit(e.target.value)}
-            />
-            <button onChange={handleEdit}>Edit</button>
-
-            <button onClick={() => handleDelete(item.id)}>Delete</button>
+            <Item item={item} />
           </li>
         ))}
       </ul>

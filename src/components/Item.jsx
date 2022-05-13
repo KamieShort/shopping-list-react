@@ -2,12 +2,12 @@ import { useState } from 'react';
 
 import React from 'react';
 
-export default function List({ item, edit, remove }) {
+export default function Item({ item, edit, remove }) {
   const [editing, setEditing] = useState(false);
 
   let conditionalContent;
 
-  if (setEditing) {
+  if (editing) {
     conditionalContent = (
       <form
         onSubmit={(e) => {
@@ -28,12 +28,32 @@ export default function List({ item, edit, remove }) {
       </form>
     );
   } else {
-    content = (
+    conditionalContent = (
       <div>
         <p>{item.text}</p>
+        <button type="button" onClick={() => setEditing(true)}>
+          Edit
+        </button>
       </div>
     );
   }
 
-  return <div>List</div>;
+  return (
+    <div>
+      <input
+        type="checkbox"
+        checked={item.done}
+        onChange={(e) => {
+          edit({
+            ...item,
+            done: e.target.checked,
+          });
+        }}
+      />
+      {conditionalContent}
+      <button type="button" onClick={() => remove(item.id)}>
+        Delete
+      </button>
+    </div>
+  );
 }

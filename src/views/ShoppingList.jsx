@@ -16,12 +16,16 @@ const reducer = (state, action) => {
     }
 
     case 'EDIT_ITEM':
-      return items.map((item) => {
-        if (item.id === action.payload.id) {
-          return { ...item, text: action.payload.text };
+      return state.map((item) => {
+        if (item.id === action.payload.item.id) {
+          return {
+            ...state,
+            text: action.payload.item.text,
+            done: action.payload.item.done,
+          };
         }
 
-        return item;
+        return state;
       });
 
     case 'DELETE_ITEM':
@@ -42,8 +46,8 @@ export default function ShoppingList() {
     setNewItem('');
   };
 
-  const handleEdit = (id) => {
-    dispatch({ type: 'EDIT_ITEM', payload: { id: id } });
+  const handleEdit = (item) => {
+    dispatch({ type: 'EDIT_ITEM', payload: { item } });
   };
 
   const handleDelete = (id) => {
@@ -52,7 +56,6 @@ export default function ShoppingList() {
 
   return (
     <div>
-      {/* <h1>Shopping List</h1> */}
       <form onSubmit={handleAddItem}>
         <input
           type="text"
@@ -67,7 +70,7 @@ export default function ShoppingList() {
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            <Item item={item} remove={handleDelete} />
+            <Item item={item} edit={handleEdit} remove={handleDelete} />
           </li>
         ))}
       </ul>

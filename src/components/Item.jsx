@@ -29,7 +29,14 @@ export default function Item({ item, edit, remove }) {
     );
   } else {
     conditionalContent = (
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '5px',
+          textDecoration: item.done ? 'line:through' : null,
+        }}
+      >
         <p>{item.text}</p>
         <button type="button" onClick={() => setEditing(true)}>
           Edit
@@ -39,7 +46,7 @@ export default function Item({ item, edit, remove }) {
   }
 
   return (
-    <div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
       <input
         type="checkbox"
         checked={item.done}

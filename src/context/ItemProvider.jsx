@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 
-const initialState = [{ id: Date.now(), text: 'eggs', done: false }];
+const initialState = [{ id: Date.now(), text: 'grapes', done: false }];
 
 const reducer = (state, action) => {
   console.log(state, action);

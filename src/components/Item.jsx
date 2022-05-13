@@ -34,7 +34,7 @@ export default function Item({ item, edit, remove }) {
           display: 'flex',
           alignItems: 'center',
           gap: '5px',
-          textDecoration: item.done ? 'line:through' : null,
+          textDecoration: item.done ? 'line-through' : null,
         }}
       >
         <p>{item.text}</p>

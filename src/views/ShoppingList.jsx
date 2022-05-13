@@ -2,9 +2,10 @@ import { useReducer, useState } from 'react';
 import React from 'react';
 import Item from '../components/Item';
 
-const initialState = [{ id: 0, text: 'eggs', done: false }];
+const initialState = [{ id: Date.now(), text: 'eggs', done: false }];
 
 const reducer = (state, action) => {
+  console.log(state, action);
   switch (action.type) {
     case 'ADD_ITEM': {
       const addItem = [

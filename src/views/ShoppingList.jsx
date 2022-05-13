@@ -67,7 +67,7 @@ export default function ShoppingList() {
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            <Item item={item} />
+            <Item item={item} remove={handleDelete} />
           </li>
         ))}
       </ul>

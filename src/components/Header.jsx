@@ -1,7 +1,11 @@
 import React from 'react';
 
-export default function Header() {
+export default function Header(items) {
+  console.log(items);
   return (
-    <div>Header Here--Add Counter and button that clears shopping list</div>
+    <div>
+      <h1>Shopping List</h1>
+      <h3>Items in cart:{items.length} </h3>
+    </div>
   );
 }

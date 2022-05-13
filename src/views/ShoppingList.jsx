@@ -1,20 +1,27 @@
 import { useReducer, useState } from 'react';
 import React from 'react';
 
-import Edit from '../components/Edit';
-
 const initialState = [{ id: 0, text: 'eggs', done: false }];
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM': {
       const addItem = [
-        { id: state.length, text: action.payload.text, done: false },
+        { id: Date.now(), text: action.payload.text, done: false },
         ...state,
       ];
 
       return addItem;
     }
+
+    case 'EDIT_ITEM':
+      return items.map((item) => {
+        if (item.id === action.payload.id) {
+          return { ...item, text: action.payload.text };
+        }
+
+        return item;
+      });
 
     case 'DELETE_ITEM':
       return state.filter((item) => item.id !== action.payload.id);
@@ -32,6 +39,10 @@ export default function ShoppingList() {
     e.preventDefault();
     dispatch({ type: 'ADD_ITEM', payload: { text: newItem } });
     setNewItem('');
+  };
+
+  const handleEdit = (id) => {
+    dispatch({ type: 'EDIT_ITEM', payload: { id: id } });
   };
 
   const handleDelete = (id) => {
@@ -56,7 +67,14 @@ export default function ShoppingList() {
         {items.map((item) => (
           <li key={item.id}>
             <p>{item.text}</p>
-            <Edit />
+
+            <input
+              type="text"
+              value={item}
+              onChange={(e) => handleEdit(e.target.value)}
+            />
+            <button onChange={handleEdit}>Edit</button>
+
             <button onClick={() => handleDelete(item.id)}>Delete</button>
           </li>
         ))}

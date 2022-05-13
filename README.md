@@ -21,8 +21,8 @@ x Use the dispatch function to update state 2
 x Set an initial value for useReducer 2
 x Items can be added to list through a reducer 2
 Items can be edited in list through a reducer 2
-Items can be deleted from list through a reducer 2
+x Items can be deleted from list through a reducer 2
 Behavior Testing\* 2
-Deployed on netlify with CI passing 2
+x Deployed on netlify with CI passing 2
 
 \*Behavior testing will include a test for adding to list, deleting from list, editing a list item, and displaying a list of items

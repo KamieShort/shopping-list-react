@@ -20,13 +20,13 @@ const reducer = (state, action) => {
       return state.map((item) => {
         if (item.id === action.payload.item.id) {
           return {
-            ...state,
+            ...item,
             text: action.payload.item.text,
             done: action.payload.item.done,
           };
         }
 
-        return state;
+        return item;
       });
 
     case 'DELETE_ITEM':
@@ -49,6 +49,7 @@ export default function ShoppingList() {
 
   const handleEdit = (item) => {
     dispatch({ type: 'EDIT_ITEM', payload: { item } });
+    setNewItem('');
   };
 
   const handleDelete = (id) => {

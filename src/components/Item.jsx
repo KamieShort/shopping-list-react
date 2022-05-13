@@ -34,10 +34,11 @@ export default function Item({ item, edit, remove }) {
           display: 'flex',
           alignItems: 'center',
           gap: '5px',
-          textDecoration: item.done ? 'line-through' : null,
         }}
       >
-        <p>{item.text}</p>
+        <p style={{ textDecoration: item.done ? 'line-through' : null }}>
+          {item.text}
+        </p>
         <button type="button" onClick={() => setEditing(true)}>
           Edit
         </button>

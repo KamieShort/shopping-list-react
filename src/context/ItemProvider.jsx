@@ -3,7 +3,6 @@ import { createContext, useContext, useReducer } from 'react';
 const initialState = [{ id: Date.now(), text: 'grapes', done: false }];
 
 const reducer = (state, action) => {
-  console.log(state, action);
   switch (action.type) {
     case 'ADD_ITEM': {
       const addItem = [
